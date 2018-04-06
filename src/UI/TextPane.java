@@ -39,7 +39,9 @@ public class TextPane extends javax.swing.JPanel {
         add(texteditor, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public void setText(String text){
+        this.texteditorarea.setText(text);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane texteditor;
     private javax.swing.JTextArea texteditorarea;

@@ -8,7 +8,10 @@ package UI;
 import Data.TextModel;
 import someHelp.ClosableTabbedPane;
 
+import java.io.File;
 
+
+import javax.swing.JFileChooser;
 import java.io.IOException;
 
 /**
@@ -17,6 +20,7 @@ import java.io.IOException;
  */
 public class Main extends javax.swing.JFrame {
     private TextModel mod;
+    private javax.swing.JFileChooser chooser;
     /**
      * Creates new form Main
      */
@@ -38,10 +42,11 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tree = new javax.swing.JTree();
         txteditorPane = new javax.swing.JPanel();
-        mainTab = new javax.swing.JTabbedPane();
+        mainTab = new ClosableTabbedPane();
         MainMenu = new javax.swing.JMenuBar();
         filemn = new javax.swing.JMenu();
         newmnitem = new javax.swing.JMenuItem();
+        openmnitem = new javax.swing.JMenuItem();
         optmn = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,6 +86,15 @@ public class Main extends javax.swing.JFrame {
         });
         filemn.add(newmnitem);
 
+        openmnitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        openmnitem.setText("Abrir");
+        openmnitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openmnitemActionPerformed(evt);
+            }
+        });
+        filemn.add(openmnitem);
+
         MainMenu.add(filemn);
 
         optmn.setText("Opciones");
@@ -104,9 +118,27 @@ public class Main extends javax.swing.JFrame {
 
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //TODO: recheck this file system
+        chooser=new JFileChooser();
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void openmnitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openmnitemActionPerformed
+        chooser.setApproveButtonText("Abrir");
+        String text="";
+        chooser.showOpenDialog(this);
+        File f=chooser.getSelectedFile();
+        try {
+            mod=new TextModel(f);
+            text=mod.readFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        TextPane tp=new TextPane();
+        tp.setText(text);
+        mainTab.addTab(mod.getFile().getName(), null, tp , "archivo");
+
+
+    }//GEN-LAST:event_openmnitemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,8 +180,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel centralPane;
     private javax.swing.JMenu filemn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane mainTab;
+    private ClosableTabbedPane mainTab;
     private javax.swing.JMenuItem newmnitem;
+    private javax.swing.JMenuItem openmnitem;
     private javax.swing.JMenu optmn;
     private javax.swing.JTree tree;
     private javax.swing.JPanel treePane;

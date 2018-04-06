@@ -51,7 +51,7 @@ public class TextModel {
     //funcion de carga
     private void load() throws IOException{
         //la ruta no puede ser vacia
-        if (PATH==null){
+        if (PATH==null && file==null){
             throw new NullPointerException("Parametros de archivo no válidos");
         }
         //si el archivo no se ha instanciado, se hace
@@ -92,7 +92,7 @@ public class TextModel {
         String text="";int n;
         //leyendo letras, hasta el EOF
         while((n=fis.read())!=-1){
-            text+=n;
+            text+=(char)n;
         }
         close();//cierra el flujo
         return text;
