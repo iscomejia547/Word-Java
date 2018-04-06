@@ -5,12 +5,18 @@
  */
 package UI;
 
+import Data.TextModel;
+import someHelp.ClosableTabbedPane;
+
+
+import java.io.IOException;
+
 /**
  *
  * @author jf_me
  */
 public class Main extends javax.swing.JFrame {
-
+    private TextModel mod;
     /**
      * Creates new form Main
      */
@@ -27,21 +33,80 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        centralPane = new javax.swing.JPanel();
+        treePane = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tree = new javax.swing.JTree();
+        txteditorPane = new javax.swing.JPanel();
+        mainTab = new javax.swing.JTabbedPane();
+        MainMenu = new javax.swing.JMenuBar();
+        filemn = new javax.swing.JMenu();
+        newmnitem = new javax.swing.JMenuItem();
+        optmn = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Word++");
+        setExtendedState(6);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        centralPane.setLayout(new java.awt.BorderLayout());
 
-        pack();
+        treePane.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setViewportView(tree);
+
+        treePane.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        centralPane.add(treePane, java.awt.BorderLayout.LINE_START);
+
+        txteditorPane.setLayout(new java.awt.BorderLayout());
+        txteditorPane.add(mainTab, java.awt.BorderLayout.CENTER);
+
+        centralPane.add(txteditorPane, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(centralPane, java.awt.BorderLayout.CENTER);
+
+        filemn.setText("Archivo");
+
+        newmnitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newmnitem.setText("Nuevo");
+        newmnitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newmnitemActionPerformed(evt);
+            }
+        });
+        filemn.add(newmnitem);
+
+        MainMenu.add(filemn);
+
+        optmn.setText("Opciones");
+        MainMenu.add(optmn);
+
+        setJMenuBar(MainMenu);
+
+        setSize(new java.awt.Dimension(416, 339));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void newmnitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newmnitemActionPerformed
+        TextPane tp=new TextPane();
+        mainTab.add(""+mainTab.getTabCount(), tp);
+        /*try {
+            txteditorArea.setText(mod.readFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+    }//GEN-LAST:event_newmnitemActionPerformed
+
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //TODO: recheck this file system
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -54,7 +119,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -79,5 +144,15 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar MainMenu;
+    private javax.swing.JPanel centralPane;
+    private javax.swing.JMenu filemn;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane mainTab;
+    private javax.swing.JMenuItem newmnitem;
+    private javax.swing.JMenu optmn;
+    private javax.swing.JTree tree;
+    private javax.swing.JPanel treePane;
+    private javax.swing.JPanel txteditorPane;
     // End of variables declaration//GEN-END:variables
 }
