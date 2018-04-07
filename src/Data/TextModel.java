@@ -57,6 +57,8 @@ public class TextModel {
         //si el archivo no se ha instanciado, se hace
         if(file==null){
             file=new File(PATH);
+        }else{
+            PATH=file.getPath();
         }
         //si no existe, se crea
         if(!file.exists()){
@@ -64,7 +66,7 @@ public class TextModel {
         }
         //corrientes de entrada y salida
         fis=new FileInputStream(file);
-        fos=new FileOutputStream(file, true);
+        fos=new FileOutputStream(file, false);
     }
     //cerrar flujos para reiniciar lectura y escritura
     public void close() throws IOException {
@@ -75,9 +77,16 @@ public class TextModel {
             fos.close();
         }
     }
+    
+    private void open() throws IOException{
+        fis=new FileInputStream(file);
+        fos=new FileOutputStream(file, false);
+    }
+
     //escribir
     public boolean writeFile(String text) throws IOException{
         //verifica el texto enviado
+        open();
         if(text==null || text.isEmpty()){
             return false;
         }
@@ -89,6 +98,7 @@ public class TextModel {
     //lee
     public String readFile() throws IOException{
         //crea un texto que sera el retorno, y un entero que almacenara las letras (ya que en secuencial se lee letra a letra)
+        open();
         String text="";int n;
         //leyendo letras, hasta el EOF
         while((n=fis.read())!=-1){

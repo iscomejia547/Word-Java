@@ -42,6 +42,10 @@ public class TextPane extends javax.swing.JPanel {
     public void setText(String text){
         this.texteditorarea.setText(text);
     }
+    public String getText(){
+        return this.texteditorarea.getText();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane texteditor;
     private javax.swing.JTextArea texteditorarea;
