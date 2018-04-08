@@ -6,9 +6,11 @@
 package UI;
 
 import Data.TextModel;
+import Data.FileSystemTree;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
 import java.io.File;
 
 
@@ -21,12 +23,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author jf_me
  */
 public class Main extends javax.swing.JFrame {
-    private TextModel mod;
-    private javax.swing.JFileChooser chooser;
+    private TextModel mod;//modelo de lectura y escritura de texto
+    private final File folder=new File("files/");//folder por defecto
+    private FileSystemTree nav;//modelo de navegacion por medio del tree 
+    private javax.swing.JFileChooser chooser;//file chooser
     /**
      * Creates new form Main
      */
     public Main() {
+        nav=new FileSystemTree(folder);
         initComponents();
     }
 
@@ -39,13 +44,9 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Treemenu = new javax.swing.JPopupMenu();
-        editmnitem = new javax.swing.JMenuItem();
-        deletemnitem = new javax.swing.JMenuItem();
-        renamemnitem = new javax.swing.JMenuItem();
         centralPane = new javax.swing.JPanel();
         treePane = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        TreePane = new javax.swing.JScrollPane();
         tree = new javax.swing.JTree();
         txteditorPane = new javax.swing.JPanel();
         mainTab = new javax.swing.JTabbedPane();
@@ -55,20 +56,6 @@ public class Main extends javax.swing.JFrame {
         openmnitem = new javax.swing.JMenuItem();
         savemnitem = new javax.swing.JMenuItem();
         optmn = new javax.swing.JMenu();
-
-        editmnitem.setText("Editar");
-        editmnitem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-            }
-        });
-        Treemenu.add(editmnitem);
-
-        deletemnitem.setText("Eliminar");
-        Treemenu.add(deletemnitem);
-
-        renamemnitem.setText("Renombrar");
-        Treemenu.add(renamemnitem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Word++");
@@ -88,14 +75,15 @@ public class Main extends javax.swing.JFrame {
         });
         treePane.setLayout(new java.awt.BorderLayout());
 
+        tree.setModel(nav);
         tree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 treeMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tree);
+        TreePane.setViewportView(tree);
 
-        treePane.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        treePane.add(TreePane, java.awt.BorderLayout.CENTER);
 
         centralPane.add(treePane, java.awt.BorderLayout.LINE_START);
 
@@ -103,7 +91,7 @@ public class Main extends javax.swing.JFrame {
 
         mainTab.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-
+                mainTabPropertyChange(evt);
             }
         });
         txteditorPane.add(mainTab, java.awt.BorderLayout.CENTER);
@@ -157,11 +145,14 @@ public class Main extends javax.swing.JFrame {
         mainTab.addTab("Nuevo", null, tp, "Archivo");
 
     }//GEN-LAST:event_newmnitemActionPerformed
-
+    
+    private void mainTabPropertyChange(java.beans.PropertyChangeEvent evt){
+        //void
+    }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         chooser=new JFileChooser();
-        chooser.setCurrentDirectory(new File("files/"));
+        chooser.setCurrentDirectory(folder);
         chooser.setFileFilter(new FileNameExtensionFilter("Archivo de texto plano", ".txt"));
     }//GEN-LAST:event_formWindowOpened
 
@@ -220,11 +211,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_treePaneMouseEntered
 
     private void treeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_treeMouseClicked
-        if(evt.getButton()==MouseEvent.BUTTON3){
-            Point p=MouseInfo.getPointerInfo().getLocation();
-            Treemenu.show(this,p.x, p.y);
-        }
+        //void
     }//GEN-LAST:event_treeMouseClicked
+
     public void saveFromNew(String text){
         chooser.setApproveButtonText("Guardar");
         chooser.showSaveDialog(this);
@@ -280,17 +269,13 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MainMenu;
-    private javax.swing.JPopupMenu Treemenu;
+    private javax.swing.JScrollPane TreePane;
     private javax.swing.JPanel centralPane;
-    private javax.swing.JMenuItem deletemnitem;
-    private javax.swing.JMenuItem editmnitem;
     private javax.swing.JMenu filemn;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JMenuItem newmnitem;
     private javax.swing.JMenuItem openmnitem;
     private javax.swing.JMenu optmn;
-    private javax.swing.JMenuItem renamemnitem;
     private javax.swing.JMenuItem savemnitem;
     private javax.swing.JTree tree;
     private javax.swing.JPanel treePane;
