@@ -44,6 +44,10 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        FileMenu = new javax.swing.JPopupMenu();
+        editmnitem = new javax.swing.JMenuItem();
+        renamemnitem = new javax.swing.JMenuItem();
+        deletemnitem = new javax.swing.JMenuItem();
         centralPane = new javax.swing.JPanel();
         treePane = new javax.swing.JPanel();
         TreePane = new javax.swing.JScrollPane();
@@ -56,6 +60,25 @@ public class Main extends javax.swing.JFrame {
         openmnitem = new javax.swing.JMenuItem();
         savemnitem = new javax.swing.JMenuItem();
         optmn = new javax.swing.JMenu();
+
+        editmnitem.setText("Editar");
+        editmnitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editmnitemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(editmnitem);
+
+        renamemnitem.setText("Renombrar");
+        renamemnitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renamemnitemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(renamemnitem);
+
+        deletemnitem.setText("Eliminar");
+        FileMenu.add(deletemnitem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Word++");
@@ -158,9 +181,13 @@ public class Main extends javax.swing.JFrame {
 
     private void openmnitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openmnitemActionPerformed
         chooser.setApproveButtonText("Abrir");
-        String text="";
         chooser.showOpenDialog(this);
         String path=chooser.getSelectedFile().getPath();
+        openFile(path);
+    }//GEN-LAST:event_openmnitemActionPerformed
+
+    private void openFile(String path){
+        String text="";
         if(path==null || path.isEmpty()){
             return;
         }
@@ -173,9 +200,7 @@ public class Main extends javax.swing.JFrame {
         TextPane tp=new TextPane();
         tp.setText(text);
         mainTab.addTab(mod.getFile().getName(), null, tp , "archivo");
-
-
-    }//GEN-LAST:event_openmnitemActionPerformed
+    }
 
     private void savemnitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savemnitemActionPerformed
         TextPane tp= (TextPane) mainTab.getSelectedComponent();
@@ -197,6 +222,7 @@ public class Main extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_savemnitemActionPerformed
+
     public String validateroute(String f){
         String route="";
         if(!f.contains(".txt")){
@@ -207,12 +233,41 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void treePaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_treePaneMouseEntered
-        JOptionPane.showMessageDialog(this, "Esta :v");
+        //void
     }//GEN-LAST:event_treePaneMouseEntered
 
     private void treeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_treeMouseClicked
-        //void
+        if(tree.getSelectionCount()!=1){
+            return;
+        }
+        if(evt.getButton()==MouseEvent.BUTTON3){
+            Point actual=MouseInfo.getPointerInfo().getLocation();
+            FileMenu.show(this, actual.x, actual.y);
+        }
     }//GEN-LAST:event_treeMouseClicked
+
+    private void editmnitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editmnitemActionPerformed
+        String path=tree.getSelectionPath().toString().replaceAll("[\\[\\]]", "").replace(", ", "\\");
+        //JOptionPane.showMessageDialog(this, path);
+        openFile(path);
+    }//GEN-LAST:event_editmnitemActionPerformed
+
+    private void renamemnitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renamemnitemActionPerformed
+        String path=tree.getSelectionPath().toString().replaceAll("[\\[\\]]", "").replace(", ", "\\");
+        File f=new File(path);
+        String newname=JOptionPane.showInputDialog(this, "Escriba un nuevo nombre");
+        if(newname==null){
+            return;
+        }
+        //JOptionPane.showMessageDialog(this, path.replaceAll(f.getName(), newname));
+        f.renameTo(new File(path.replaceAll(f.getName(), newname)+".txt"));
+        updateNav();
+    }//GEN-LAST:event_renamemnitemActionPerformed
+
+    public void updateNav(){
+        nav=new FileSystemTree(folder);
+        tree.setModel(nav);
+    }
 
     public void saveFromNew(String text){
         chooser.setApproveButtonText("Guardar");
@@ -268,14 +323,18 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu FileMenu;
     private javax.swing.JMenuBar MainMenu;
     private javax.swing.JScrollPane TreePane;
     private javax.swing.JPanel centralPane;
+    private javax.swing.JMenuItem deletemnitem;
+    private javax.swing.JMenuItem editmnitem;
     private javax.swing.JMenu filemn;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JMenuItem newmnitem;
     private javax.swing.JMenuItem openmnitem;
     private javax.swing.JMenu optmn;
+    private javax.swing.JMenuItem renamemnitem;
     private javax.swing.JMenuItem savemnitem;
     private javax.swing.JTree tree;
     private javax.swing.JPanel treePane;
