@@ -16,11 +16,13 @@ import javax.swing.*;
 public class ClosableTabbedPane extends JTabbedPane{
 	private TabCloseUI closeUI = new TabCloseUI(this);
 	
+        @Override
 	public void paint(Graphics g){
 		super.paint(g);
 		closeUI.paint(g);
 	}
 	
+        @Override
 	public void addTab(String title, Component component) {
 		super.addTab(title+"  ", component);
 	}
@@ -43,14 +45,20 @@ public class ClosableTabbedPane extends JTabbedPane{
 			tabbedPane.addMouseMotionListener(this);
 			tabbedPane.addMouseListener(this);
 		}
+                @Override
 		public void mouseEntered(MouseEvent me) {}
+                @Override
 		public void mouseExited(MouseEvent me) {}
+                @Override
 		public void mousePressed(MouseEvent me) {}
+                @Override
 		public void mouseClicked(MouseEvent me) {}
+                @Override
 		public void mouseDragged(MouseEvent me) {}
 		
 		
 
+                @Override
 		public void mouseReleased(MouseEvent me) {
 			if(closeUnderMouse(me.getX(), me.getY())){
 				boolean isToCloseTab = tabAboutToClose(selectedTab);
@@ -61,6 +69,7 @@ public class ClosableTabbedPane extends JTabbedPane{
 			}
 		}
 
+                @Override
 		public void mouseMoved(MouseEvent me) {	
 			meX = me.getX();
 			meY = me.getY();			
