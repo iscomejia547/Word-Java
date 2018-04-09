@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab4325aa-96b2-4939-aa4f-49dcea8b88bd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Tester/psvm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/someHelp/Secuencial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/TextModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/TextModel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,16 +14,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TextModel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TextModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Data/TextModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="91" column="29" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
+            <state relative-caret-position="230">
+              <caret line="95" column="9" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UI/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
@@ -99,8 +97,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/UI/M.form" />
         <option value="$PROJECT_DIR$/src/UI/TextPane.java" />
-        <option value="$PROJECT_DIR$/src/Data/TextModel.java" />
         <option value="$PROJECT_DIR$/src/UI/Main.java" />
+        <option value="$PROJECT_DIR$/src/Data/TextModel.java" />
       </list>
     </option>
   </component>
@@ -236,12 +234,12 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3290938" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3290938" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12225476" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12225476" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -374,13 +372,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/TextModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="91" column="29" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Data/FileSystemTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -418,6 +409,13 @@
             <element signature="e#10550#10551#0" expanded="true" />
             <element signature="e#10609#10610#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/TextModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="95" column="9" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
         </state>
       </provider>
     </entry>

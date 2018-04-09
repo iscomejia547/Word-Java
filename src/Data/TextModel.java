@@ -94,7 +94,6 @@ public class TextModel {
         while((n=raf.read())!=(-1)){
             text+=(char)n;
         }
-        System.out.println(text);
         reset(0);//cierra el flujo
         return text;
     }
