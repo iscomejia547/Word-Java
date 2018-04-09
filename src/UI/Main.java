@@ -24,13 +24,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Main extends javax.swing.JFrame {
     private TextModel mod;//modelo de lectura y escritura de texto
-    private final File folder=new File("files/");//folder por defecto
+    private File folder;//folder por defecto
     private FileSystemTree nav;//modelo de navegacion por medio del tree 
     private javax.swing.JFileChooser chooser;//file chooser
     /**
      * Creates new form Main
      */
     public Main() {
+        folder=new File("files/");
         nav=new FileSystemTree(folder);
         initComponents();
     }
@@ -78,6 +79,11 @@ public class Main extends javax.swing.JFrame {
         FileMenu.add(renamemnitem);
 
         deletemnitem.setText("Eliminar");
+        deletemnitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletemnitemActionPerformed(evt);
+            }
+        });
         FileMenu.add(deletemnitem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -220,7 +226,7 @@ public class Main extends javax.swing.JFrame {
             saveFromNew(text);
             mainTab.setTitleAt(index, mod.getFile().getName());
         }
-
+        updateNav();
     }//GEN-LAST:event_savemnitemActionPerformed
 
     public String validateroute(String f){
@@ -256,13 +262,22 @@ public class Main extends javax.swing.JFrame {
         String path=tree.getSelectionPath().toString().replaceAll("[\\[\\]]", "").replace(", ", "\\");
         File f=new File(path);
         String newname=JOptionPane.showInputDialog(this, "Escriba un nuevo nombre");
-        if(newname==null){
+        if(newname==null || newname.isEmpty()){
             return;
         }
         //JOptionPane.showMessageDialog(this, path.replaceAll(f.getName(), newname));
         f.renameTo(new File(path.replaceAll(f.getName(), newname)+".txt"));
         updateNav();
     }//GEN-LAST:event_renamemnitemActionPerformed
+
+    private void deletemnitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletemnitemActionPerformed
+        String path=tree.getSelectionPath().toString().replaceAll("[\\[\\]]", "").replace(", ", "\\");
+        File f=new File(path);
+        if(f.delete()){
+            JOptionPane.showMessageDialog(this, "Se ha eliminado el archivo", "", JOptionPane.INFORMATION_MESSAGE);
+        }
+        updateNav();
+    }//GEN-LAST:event_deletemnitemActionPerformed
 
     public void updateNav(){
         nav=new FileSystemTree(folder);
