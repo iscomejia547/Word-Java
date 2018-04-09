@@ -7,6 +7,7 @@ package UI;
 
 import Data.TextModel;
 import Data.FileSystemTree;
+import someHelp.ClosableTabbedPane;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -54,7 +55,7 @@ public class Main extends javax.swing.JFrame {
         TreePane = new javax.swing.JScrollPane();
         tree = new javax.swing.JTree();
         txteditorPane = new javax.swing.JPanel();
-        mainTab = new javax.swing.JTabbedPane();
+        mainTab = new ClosableTabbedPane();
         MainMenu = new javax.swing.JMenuBar();
         filemn = new javax.swing.JMenu();
         newmnitem = new javax.swing.JMenuItem();
@@ -345,7 +346,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem deletemnitem;
     private javax.swing.JMenuItem editmnitem;
     private javax.swing.JMenu filemn;
-    private javax.swing.JTabbedPane mainTab;
+    private ClosableTabbedPane mainTab;
     private javax.swing.JMenuItem newmnitem;
     private javax.swing.JMenuItem openmnitem;
     private javax.swing.JMenu optmn;
