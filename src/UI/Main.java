@@ -215,6 +215,7 @@ public class Main extends javax.swing.JFrame {
         if(mod==null){
             saveFromNew(text);
             mainTab.setTitleAt(index, mod.getFile().getName());
+            updateNav();
             return;
         }else if(mainTab.getTitleAt(index).equals(mod.getFile().getName())){
             try {
@@ -314,7 +315,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Metal".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
